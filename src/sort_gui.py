@@ -1,10 +1,6 @@
 import tkinter as tk
 import time 
 
-
-# This is a "Sorting Calculator". It is inspired by Sort Detective Assignment I did.
-# The difference here is the user will know what Sorting Algorithm will be used when the button is pressed.
-
 # To-Do (GUI):
 # BUTTONS:
 # 6 buttons for each Alg
@@ -19,26 +15,3 @@ import time
 # Text Listed
 # Total integers in File: 100
 # The (current) filename: mydata.txt
-
-
-
-# file directory
-
-
-# Bubble Sort
-
-
-# Selection Sort
-
-
-# Insertion Sort
-
-
-# Merge Sort
-
-
-# Quicksort
-
-
-# Heapsort
-
