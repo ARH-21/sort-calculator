@@ -70,7 +70,7 @@ def insertion_sort(arr):
         comps += 1
 
         while j >= 0 and key < a[j]:
-            # shift elements to the right
+            # Shifting Elements to the right
             a[j + 1] = a[j]
             
             swaps += 1
