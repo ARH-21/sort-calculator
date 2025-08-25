@@ -1,7 +1,7 @@
 # read text file and sort
 # copy() save original unsorted data for each press
 
-# need to add moves and comparisons
+# need to add moves (swaps) and comparisons
 
 # Bubble Sort
 def bubble_sort(arr):
