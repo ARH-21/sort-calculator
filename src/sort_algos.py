@@ -1,49 +1,34 @@
-# read text file and sort
-# copy() save original unsorted data for each press
+# Counter Variables
+# Swap = 0 (which number is bigger), Comps = 0 (how many times the number is moved/swapped)
+# Copy() so every time button is pressed it has the original data
 
-# need to add moves (swaps) and comparisons
-
-# Bubble Sort
 def bubble_sort(arr):
     a = arr.copy()
     n = len(arr)
 
-    # Track Moves
-
-    # Swaps (moves) (Which is bigger number)
     swaps = 0
-
-    # Comps (How many times number is moved)
     comps = 0
 
     for i in range(n):
         for j in range(0, n - i - 1):
-
             comps += 1
 
             if a[j] > a[j + 1]:
-                # swap the elements
                 a[j], a[j + 1] = a[j + 1], a[j]
-                
                 swaps += 1
 
-        return a, swaps, comps
+    return a, swaps, comps
 
-# if 5 > 8 no swap
-# if 8 > 5 swap
-
-
-# Selection Sort
 
 def selection_sort(arr):
     a = arr.copy()
+    n = len(a)
+
     swaps = 0
     comps = 0
-    n = len(a)
 
     for i in range(n):
         min_index = i 
-
         for j in range(i + 1, n):
             comps += 1
 
@@ -51,54 +36,45 @@ def selection_sort(arr):
                 min_index = j
         
         if min_index != i:
-            (a[i], a[min_index]) = (a[min_index], a[i])
+            a[i], a[min_index] = a[min_index], a[i]
             swaps += 1
     
     return a, swaps, comps
 
 
-# Insertion Sort
 def insertion_sort(arr):
     a = arr.copy()
+    n = len(a)
+
     swaps = 0
     comps = 0
 
-    for i in range(1, len(a)):
+    for i in range(1, n):
         key = a[i]
         j = i - 1
 
-        comps += 1
-
         while j >= 0 and key < a[j]:
-            # Shifting Elements to the right
-            a[j + 1] = a[j]
-            
-            swaps += 1
+            comps += 1 # Increment if comparison is made (tracking)
+            a[j + 1] = a[j] 
+            swaps += 1 # Increment count if shift "moves"
             j -= 1
 
-            if j >= 0:
-                comps += 1
+        # Final comparison check if the loop stops
+        if j >= 0:
+            comps += 1
 
         a[j + 1] = key
-        moves += 1
+        swaps += 1 # The key placement is a move so it is counted
     
     return a, swaps, comps
-        
 
 
-# Merge Sort
-
+# TO-DO:
 def merge_sort(arr):
     pass
-
-
-# Quicksort
-
+        
 def quick_sort(arr):
     pass
 
-
-# Heapsort
-def heapsort(arr):
-    pass
-
+def heap_sort(arr):
+   pass
