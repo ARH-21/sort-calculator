@@ -68,10 +68,45 @@ def insertion_sort(arr):
     
     return a, swaps, comps
 
-
-# TO-DO:
 def merge_sort(arr):
-    pass
+    def merge(sub_arr):
+        if len(sub_arr) <= 1:
+            return sub_arr, 0, 0  
+        
+        mid = len(sub_arr) // 2
+
+        # Swaps and Comps need to be tracked here as well
+        left, left_swaps, left_comps = merge(sub_arr[:mid])
+        right, right_swaps, right_comps = merge(sub_arr[mid:])
+        
+        merged = []
+        i = j = 0
+        swaps = left_swaps + right_swaps
+        comps = left_comps + right_comps
+        
+        while i < len(left) and j < len(right):
+            comps += 1
+            if left[i] <= right[j]:
+                merged.append(left[i])
+                i += 1
+            else:
+                merged.append(right[j])
+                j += 1
+            swaps += 1  
+        
+        while i < len(left):
+            merged.append(left[i])
+            swaps += 1
+            i += 1
+        while j < len(right):
+            merged.append(right[j])
+            swaps += 1
+            j += 1
+        
+        return merged, swaps, comps
+    
+    sorted_arr, swaps, comps = merge(arr.copy())
+    return sorted_arr, swaps, comps
         
 def quick_sort(arr):
     pass
