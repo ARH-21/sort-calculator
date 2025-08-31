@@ -68,6 +68,7 @@ def insertion_sort(arr):
     
     return a, swaps, comps
 
+# The other 3 sorts have nested functions so they can be imported easier to the other
 def merge_sort(arr):
     def merge(sub_arr):
         if len(sub_arr) <= 1:
@@ -108,8 +109,86 @@ def merge_sort(arr):
     sorted_arr, swaps, comps = merge(arr.copy())
     return sorted_arr, swaps, comps
         
+
 def quick_sort(arr):
-    pass
+    n = len(arr)
+    if n <= 1:
+        return arr.copy(), 0, 0
+    
+    a = arr.copy()
+    swaps = 0
+    comps = 0
+
+    def quick_sort_dc(sub_arr, low, high, swaps, comps):
+        if low < high:
+            pivot_index, swaps, comps = partition(sub_arr, low, high, swaps, comps)
+            swaps, comps = quick_sort_dc(sub_arr, low, pivot_index - 1, swaps, comps)
+            swaps, comps = quick_sort_dc(sub_arr, pivot_index + 1, high, swaps, comps)
+        return swaps, comps
+
+    def partition(sub_arr, low, high, swaps, comps):
+        pivot = sub_arr[high]
+        i = low - 1
+
+        for j in range(low, high):
+            comps += 1
+            if sub_arr[j] <= pivot:
+                i += 1
+                if i != j: 
+                    sub_arr[i], sub_arr[j] = sub_arr[j], sub_arr[i]
+                    swaps += 1
+
+     
+        i += 1
+        if i != high:  
+            sub_arr[i], sub_arr[high] = sub_arr[high], sub_arr[i]
+            swaps += 1
+
+        return i, swaps, comps
+
+    swaps, comps = quick_sort_dc(a, 0, len(a) - 1, swaps, comps)
+    return a, swaps, comps
+
 
 def heap_sort(arr):
-   pass
+    def heapify(sub_arr, n, i, swaps, comps):
+        largest = i
+        left = 2 * i + 1
+        right = 2 * i + 2
+
+
+        if left < n:
+            comps += 1
+            if sub_arr[left] > sub_arr[largest]:
+                largest = left
+
+
+        if right < n:
+            comps += 1
+            if sub_arr[right] > sub_arr[largest]:
+                largest = right
+
+        
+        if largest != i:
+            sub_arr[i], sub_arr[largest] = sub_arr[largest], sub_arr[i]
+            swaps += 1
+            swaps, comps = heapify(sub_arr, n, largest, swaps, comps)
+
+        return swaps, comps
+
+    a = arr.copy()
+    n = len(a)
+    swaps = 0
+    comps = 0
+
+    # max heap
+    for i in range(n // 2 - 1, -1, -1):
+        swaps, comps = heapify(a, n, i, swaps, comps)
+
+    
+    for i in range(n - 1, 0, -1):
+        a[0], a[i] = a[i], a[0]
+        swaps += 1
+        swaps, comps = heapify(a, i, 0, swaps, comps)
+
+    return a, swaps, comps
