@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import time
 import os
-from sort_algos import bubble_sort, insertion_sort, selection_sort
+from sort_algos import bubble_sort, insertion_sort, selection_sort, merge_sort, quick_sort, heap_sort
 
 class SortGUI:
     # Constructor
@@ -31,12 +31,12 @@ class SortGUI:
         tk.Button(self.left_frame, text="Selection Sort",
                   command=lambda: self.run_sort("Selection Sort", selection_sort)).pack(fill="x", pady=2)
         # TO-DO (The other 3 sorts):
-        # tk.Button(self.left_frame, text="Merge Sort",
-        #           command=lambda: self.run_sort("Merge Sort", merge_sort)).pack(fill="x", pady=2)
-        # tk.Button(self.left_frame, text="Quick Sort",
-        #           command=lambda: self.run_sort("Quick Sort", quick_sort)).pack(fill="x", pady=2)
-        # tk.Button(self.left_frame, text="Heap Sort",
-        #           command=lambda: self.run_sort("Heap Sort", heap_sort)).pack(fill="x", pady=2)
+        tk.Button(self.left_frame, text="Merge Sort",
+                  command=lambda: self.run_sort("Merge Sort", merge_sort)).pack(fill="x", pady=2)
+        tk.Button(self.left_frame, text="Quick Sort",
+                  command=lambda: self.run_sort("Quick Sort", quick_sort)).pack(fill="x", pady=2)
+        tk.Button(self.left_frame, text="Heap Sort",
+                  command=lambda: self.run_sort("Heap Sort", heap_sort)).pack(fill="x", pady=2)
         
 
         # File Info on GUI
